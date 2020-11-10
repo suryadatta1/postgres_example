@@ -16,16 +16,14 @@ router.get('/', async (req, res) => {
 
 // Add a gig
 router.post('/add', async (req, res) => {
-  let { title, technologies, budget, description, contact_email } = req.body;
+  let { name, email, userGroup } = req.body;
 
   // Insert into table
   try {
     let gig = await Gig.create({
-      title,
-      technologies,
-      description,
-      budget,
-      contact_email,
+      name,
+      email,
+      userGroup
     });
     res.send(gig);
   } catch (error) {
@@ -33,28 +31,16 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Search for gigs
-router.get('/search', (req, res) => {
-  let { term } = req.query;
 
-  // Make lowercase
-  term = term;
-
-  Gig.findAll({ where: { technologies: { [Op.like]: '%' + term + '%' } } })
-    .then((gigs) => res.send(gigs))
-    .catch((err) => res.send(err));
-});
 
 router.put('/:id', async (req, res) => {
-  let { title, technologies, budget, description, contact_email } = req.body;
+  let { name, email, userGroup } = req.body;
   try {
     let gig = await Gig.findByPk(req.params.id);
     gig.update({
-      title,
-      technologies,
-      budget,
-      description,
-      contact_email,
+      name,
+      email,
+      userGroup
     });
     res.send(gig);
   } catch (error) {

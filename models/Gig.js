@@ -2,26 +2,18 @@ const Sequelize = require('sequelize');
 const db = require('../config/database');
 
 const Gig = db.define('gig', {
-  title: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  technologies: {
+  email: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  description: {
+  userGroup: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  budget: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  contact_email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+  }
 });
 
 Gig.sync().then(() => {
