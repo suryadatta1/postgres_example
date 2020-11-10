@@ -61,7 +61,7 @@ router.get('/:id', async (req, res) => {
       res.status(200).json('Hello, You can only view the pages');
     }
   } catch (error) {
-    console.log('Error in finding user by ID', error);
+    res.status(404).json('Error in finding user by ID', error);
   }
 });
 
