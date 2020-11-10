@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   res.status(200).send('hello');
 });
 
-app.use('/gigs', require('./routes/gigs'));
+app.use('/users', require('./routes/users'));
 
 const PORT = process.env.PORT || 3000;
 
